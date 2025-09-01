@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OpenRouter Chatbox</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="logo">🤖</span>
+      <h1>OpenRouter Chatbox</h1>
+    </div>
+    <div class="controls">
+      <select id="modelSelect" title="Select Model">
+        <option value="openrouter/auto" selected>openrouter/auto</option>
+        <option value="google/gemini-flash-1.5">google/gemini-flash-1.5</option>
+        <option value="anthropic/claude-3.5-sonnet">anthropic/claude-3.5-sonnet</option>
+        <option value="meta-llama/llama-3.1-70b-instruct">meta-llama/llama-3.1-70b-instruct</option>
+        <option value="mistralai/mixtral-8x7b-instruct">mistralai/mixtral-8x7b-instruct</option>
+      </select>
+      <button id="clearBtn" class="ghost" title="Clear chat">Clear</button>
+    </div>
+  </header>
+
+  <main class="chat-wrapper">
+    <aside class="sidebar">
+      <h2>Settings</h2>
+      <label class="field">
+        <span>System Prompt</span>
+        <textarea id="systemPrompt" rows="4" placeholder="You are a helpful AI assistant. Answer briefly."></textarea>
+      </label>
+      <label class="field">
+        <span>Temperature</span>
+        <input type="range" id="temp" min="0" max="2" step="0.1" value="0.7"/>
+        <output id="tempOut">0.7</output>
+      </label>
+      <div class="note">
+        <p><strong>API Key:</strong> Put your OpenRouter API key in <code>config.js</code> (see README). Exposing keys on the frontend is unsafe in production.</p>
+      </div>
+    </aside>
+
+    <section class="chat-section">
+      <div id="messages" class="messages" aria-live="polite"></div>
+      <form id="chatForm" class="composer" autocomplete="off">
+        <input id="userInput" type="text" placeholder="Type your message..." required />
+        <button id="sendBtn" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>Powered by <a href="https://openrouter.ai" target="_blank" rel="noreferrer">OpenRouter</a></span>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
